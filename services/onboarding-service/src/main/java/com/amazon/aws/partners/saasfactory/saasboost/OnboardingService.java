@@ -418,7 +418,7 @@ public class OnboardingService {
                                 .queueUrl(ONBOARDING_VALIDATION_QUEUE)
                                 .messageBody(Utils.toJson(Map.of("onboardingId", onboarding.getId())))
                         );
-                        dal.updateStatus(onboarding.getId(), OnboardingStatus.validating);
+                        dal.updateStatus(onboarding.getId(), OnboardingStatus.validatig);
                     } catch (SdkServiceException sqsError) {
                         LOGGER.error("sqs:SendMessage error", sqsError);
                         LOGGER.error(Utils.getFullStackTrace(sqsError));
@@ -460,7 +460,7 @@ public class OnboardingService {
                             onboarding.getId());
                     // TODO throw illegal state?
                 }
-                if (OnboardingStatus.validating != onboarding.getStatus()) {
+                if (OnboardingStatus.validatig != onboarding.getStatus()) {
                     // TODO Also illegal state
                 }
                 onboarding = dal.updateStatus(onboarding.getId(), OnboardingStatus.validated);
@@ -1159,7 +1159,7 @@ public class OnboardingService {
                 LOGGER.error("No onboarding request data for {}", onboardingId);
                 fatal.add(message);
                 failOnboarding(onboardingId, "Onboarding record has no request content");
-            } else if (OnboardingStatus.validating != onboarding.getStatus()) {
+            } else if (OnboardingStatus.validatig != onboarding.getStatus()) {
                 LOGGER.warn("Onboarding in unexpected state for validation {} {}", onboardingId, onboarding.getStatus());
                 fatal.add(message);
                 failOnboarding(onboardingId, "Onboarding can't be validated when in state "

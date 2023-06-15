@@ -18,7 +18,7 @@ package com.amazon.aws.partners.saasfactory.saasboost;
 
 public enum OnboardingStatus {
     created,
-    validating,
+    validatig,
     validated,
     provisioning,
     provisioned,
