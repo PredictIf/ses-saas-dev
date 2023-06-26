@@ -82,6 +82,8 @@ export default function OnboardingCreateContainer() {
         )
       }
       history.push(`/onboarding/${onboardingResponse.payload.id}`)
+      console.log('here')
+      console.log(String(onboardingResponse.payload.zipFile))
     } catch (err) {
       resetForm({ values })
     } finally {
